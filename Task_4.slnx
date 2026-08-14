@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SearchTask/SearchTask1.csproj" Id="8bdb96b5-973d-4ff3-b1da-4b6400470642" />
+  <Project Path="SearchTask2/SearchTask2.csproj" Id="a890a757-cab7-4ce2-8e97-cef295397252" />
+  <Project Path="Task_4/MainTask.csproj" />
+</Solution>
