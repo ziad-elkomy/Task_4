@@ -1,0 +1,50 @@
+قبل ما نخش عالexceptions محتاجين نعرف ايه هي انواع الerrors 
+اول حاجة syntax error و دي اصلا بتمنع الapplication عندي انه ي run اساسا و كنا بنحلها عن طريق بس اننا نظبط الkeywords او الحاجات الاساسية في اللغة و عندي نوع تاني من الerrors و هو 
+الlogical مبيأثرش على تشغيل الapplication بس بيدي نتايج غير منطقية و نوع تالت و هو 
+الruntime يقدر البرنامج يشتغل عادي بس لو حصلت مشكلة البرنامج يوقف تماما لكن هل حد سأل نفسه نحل المشكلة دي ازاي ؟ 
+
+بكل بساطة عن طريق الexceptions اللي بتديني امكانية اني احدد الerrors و خاصة الruntime و اقدر احلها بدون ما البرنامج يوقف فالexceptions هي الطريقة او التكنيك اللي بتخليني ا detect الerrors بدون ما يأثر عالflow بتاع الابلكيشن فهما عبارة عن classes و وقت ما تحصل المشكلة يترمي object فيه كل تفاصيل المشكلة و ايه نوع الexception 
+
+Syntax
+عندي 4 keyword هنتكلم عن تلاتة دلوقتي و هما الtry , catch , finally
+try
+}
+//the code
+{
+catch(typeOfException)
+}
+//handle exception
+{
+finallly
+{
+//code executed whether the exception handled or not
+}
+شرح الsyntax باختصار بحط الكود جوة الtry block اللي انا حاسس انه فيه مشكلة و ممكن يرمي exception و بعدين اعمل catch لنوع من أنواع الexception اللي انا متوقع انه يحصل ممكن طبعا احط كذا نوع بكذا catch و ال finally block ده عبارة عن جزء بيتنفذ سواء حصل exception او محصلش و بستفاد بيه مثلا اني ازيل بعض من الذاكرة او أوقف أي ملفات او database connections متعلقة عندي من الاخر كأني بنظف البرنامج
+
+و عندي نوعين من الexceptions و هما standard و دي ليها كذا نوع داخلي هنتكلم عنهم و نوع كمان و هو الuser-defined
+طيب بالنسبة للstandard هي ببساطة exceptions جاهزة و معمولة في  c# و هما كذا class مبنيين جوة ال c#
+من ضمن أنواع الstandard:
+1 - dividebyzero: لو قسمت على صفر
+2 - ArithmeticException: لو حدث أخطاء في عمليات حسابية معينة بما فيهم القسمة على صفر
+3 - IndexOutOfRange: لو بaccess على عنصر برة الrange في size array
+4 - FormatException: لو دخلت مثلا بيانات string في int او double مثلا
+
+
+النوع التاني من الexceptions و هو الuser-defined
+ده بالظبط كأني بعمل exception خاص بيا في البروجكت مبيكونش موجود و جاهز في الc#
+طب ازاي ؟؟
+عن طريق اني اعمل class و اعمل من خلاله inherit لل Exception class اللي بالمناسبة هو الparent لاي class exception موجود في ال c#
+مثال
+class SalaryException : Exception{
+public SalaryException(string)
+{
+Console.WriteLine("Salary is Negative");
+}
+و اقدر اعمل جوة الclass    فكرة  الthrow SalaryException زي مثلا
+class Account{
+public void Deposit(amount)
+{
+if(amount<0)
+throw new SalaryException();
+}
+و احط الfunction جوة الtry و لو حصلت مشكلة ترمي SalaryException , اقدر handle بالcatch(SalaryException)
